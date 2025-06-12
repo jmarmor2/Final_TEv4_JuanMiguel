@@ -1,0 +1,71 @@
+package com.example.final_tev4_juan_miguel_martnez
+
+import android.app.Activity
+import androidx.compose.foundation.layout.*
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
+import androidx.compose.material3.*
+import androidx.compose.runtime.*
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PantallaDetalle(navController: NavController, nombre: String, email: String) {
+    var contador by remember { mutableStateOf(0) }
+    var nombreActual by remember { mutableStateOf(nombre) }
+    var emailActual by remember { mutableStateOf(email) }
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text(stringResource(id = R.string.detalle_alumno)) },
+                navigationIcon = {
+                    IconButton(onClick = { navController.popBackStack() }) {
+                        Icon(imageVector = Icons.Filled.ArrowBack, contentDescription = stringResource(id = R.string.atras))
+                    }
+                }
+            )
+        }
+    ) { paddingValues ->
+        Column(modifier = Modifier.padding(paddingValues).padding(16.dp)) {
+            CampoTexto(stringResource(id = R.string.nombre), nombreActual) { nombreActual = it }
+            CampoTexto(stringResource(id = R.string.email), emailActual) { emailActual = it }
+
+            Row(modifier = Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceEvenly) {
+                BotonLimpiar { nombreActual = ""; emailActual = "" }
+                BotonContador(contador) { contador++ }
+                BotonSalir(navController)
+            }
+        }
+    }
+}
+
+@Composable
+fun CampoTexto(label: String, valor: String, onValorChange: (String) -> Unit) {
+    TextField(value = valor, onValueChange = onValorChange, label = { Text(label) })
+}
+
+@Composable
+fun BotonLimpiar(onClick: () -> Unit) {
+    Button(onClick = onClick, colors = ButtonDefaults.buttonColors(containerColor = Color.Blue)) {
+        Text(stringResource(id = R.string.limpiar))
+    }
+}
+
+@Composable
+fun BotonContador(contador: Int, onClick: () -> Unit) {
+    Button(onClick = onClick, colors = ButtonDefaults.buttonColors(containerColor = Color.Magenta)) {
+        Text("${stringResource(id = R.string.contador)}: $contador")
+    }
+}
+
+@Composable
+fun BotonSalir(navController: NavController) {
+    Button(onClick = { navController.popBackStack() }) {
+        Text(stringResource(id = R.string.salir))
+    }
+}
+
