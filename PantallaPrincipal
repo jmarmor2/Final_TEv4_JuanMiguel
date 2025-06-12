@@ -1,0 +1,80 @@
+package com.example.tev4_faris
+
+import androidx.compose.foundation.Image
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
+import androidx.compose.material3.*
+import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+fun PantallaPrincipal(navController: NavController) {
+    val alumnos = listOf(
+        Alumno("Alessia", "Futbol", "alessia@alessiaolivares.com", R.drawable.alessiaoliveratorres),
+        Alumno("Alex", "Historia", "alex@realmadrid.com", R.drawable.alex),
+        Alumno("Aljareya", "Programación", "juan@aljareya.com", R.drawable.aljareya),
+        Alumno("Angel", "Acceso a datos", "Angel@angelhk.com", R.drawable.angel),
+        Alumno("Angel floro", "Programación", "Angel@floro.com", R.drawable.angelfloro),
+        Alumno("Aymen", "Python", "aymen@ejido.com", R.drawable.aymen),
+        Alumno("Bernardo", "Sistemas", "Bernardo@rodriguez.com", R.drawable.berni),
+        Alumno("Clara", "Programación", "Clara@gmail.com", R.drawable.clararoldanperez),
+        Alumno("Faris", "Programación Android", "mohamedfariss@gmail.com", R.drawable.farismohamedamine),
+        Alumno("Errady", "Programación", "Erady@gmail.com", R.drawable.foto),
+        Alumno("Francisco", "Empresariales", "juan@gmail.com", R.drawable.franciscojosemartinezgarcia),
+        Alumno("Javier", "Sistemas Informaticos", "javierpsp@gmail.com", R.drawable.javier),
+        Alumno("Javier", "Programación", "javierberni@gmail.com", R.drawable.javi),
+        Alumno("Cortes", "Historia", "javiercortes@gmail.com", R.drawable.javiercortes),
+        Alumno("Jorge", "Programación Android", "jorge@gmail.com", R.drawable.jorge),
+        Alumno("Juanra", "Sistemas Informaticos", "Juanra@gmail.com", R.drawable.juanramonpereztoledo),
+        Alumno("Liobomire", "Matemáticas", "LiobomireAlejandro@gmail.com", R.drawable.lobu),
+        Alumno("Lucia", "Programación Android", "LuciaRodriguez@gmail.com", R.drawable.lucia),
+        Alumno("Marko", "Matemáticas", "Markodelarosa@gmail.com", R.drawable.marko),
+        Alumno("Oscar", "Programación Android", "Oscarabellan@gmail.com", R.drawable.oscar),
+        Alumno("Bono", "Sistemas Informaticos", "Oscarbono@gmail.com", R.drawable.oscarbono),
+        Alumno("Sergey", "Acceso datos", "SergeyNamogov@gmail.com", R.drawable.sergeytereshkov),
+        Alumno("Vili", "Programación Android", "Vilirodri@gmail.com", R.drawable.vili),
+        Alumno("Walter", "PSP", "WalterAlexandro@gmail.com", R.drawable.walter),
+        Alumno("Yerai", "Sistemas Informaticos", "YeraiYerai@gmail.com", R.drawable.yerai),
+    )
+    Scaffold(
+        topBar = {
+            TopAppBar(title = { Text(stringResource(id = R.string.lista_alumnos)) })
+        }
+    ) { paddingValues ->
+        LazyColumn(modifier = Modifier.padding(paddingValues)) {
+            items(alumnos) { alumno ->
+                AlumnoCard(alumno) { navController.navigate("pantalla_detalle/${alumno.nombre}/${alumno.email}") }
+            }
+        }
+    }
+}
+
+@Composable
+fun AlumnoCard(alumno: Alumno, onClick: () -> Unit) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(12.dp)
+            .clickable { onClick() }
+    ) {
+        Row(modifier = Modifier.padding(16.dp)) {
+            Image(
+                painter = painterResource(alumno.imagen),
+                contentDescription = null,
+                modifier = Modifier.size(50.dp)
+            )
+            Column(modifier = Modifier.padding(start = 20.dp)) {
+                Text(text = alumno.nombre)
+                Text(text = alumno.asignaturaFavorita)
+                Text(text = alumno.email)
+            }
+        }
+    }
+}
