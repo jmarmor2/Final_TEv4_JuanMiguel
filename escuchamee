@@ -1,0 +1,42 @@
+mira para lo de idiomas es por eso te da problema.s si tu sabes hacerlo ignora este mensaje
+
+Ve a la carpeta res en tu proyecto: 
+
+busca values luego  string xml 
+
+aqui pon estooo 
+
+<resources>
+<string name="app_name">TEV4_FARIS</string>
+<string name="lista_alumnos">Lista de Alumnos</string>
+<string name="detalle_alumno">Detalle Alumno</string>
+<string name="nombre">Nombre</string>
+<string name="email">Email</string>
+<string name="limpiar">Limpiar</string>
+<string name="salir">Salir</string>
+<string name="contador">Contador</string>
+<string name="atras">Atrás</string>
+</resources> 
+
+
+
+ahi arriba vas a ver un icono de mundo, busca el ingles y pulsa okkk. 
+
+
+cuando te crea la carpeta de ingles vas al archivo y copias esto igual 
+
+
+
+<resources>
+<string name="app_name">TEV4_FARIS</string>
+<string name="lista_alumnos">Student List</string>
+<string name="detalle_alumno">Student Details</string>
+<string name="nombre">Name</string>
+<string name="email">Email</string>
+<string name="limpiar">Clear</string>
+<string name="salir">Exit</string>
+<string name="contador">Counter</string>
+<string name="atras">Back</string>
+</resources>
+
+
