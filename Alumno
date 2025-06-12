@@ -1,0 +1,10 @@
+//esta es una dataclass crea una clase llamada
+
+package com.example.final_tev4_juan_miguel_martnez
+
+data class Alumno(
+    val nombre: String,
+    val asignaturaFavorita: String,
+    val email: String,
+    val imagen: Int
+)
